@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Enums;
 
 public class Movement : MovementBehaviour
 {
@@ -16,6 +17,8 @@ public class Movement : MovementBehaviour
     private CharacterBehaviour playerCharacter;
     private Rigidbody2D rigidbody;
     private bool grounded;
+    private List<MovementButton> movementButtons = new List<MovementButton>();
+    private float horizontalDirection = 0;
 
     #endregion
 
@@ -31,6 +34,11 @@ public class Movement : MovementBehaviour
     {
         playerCharacter = GetComponent<CharacterBehaviour>();
         rigidbody = GetComponent<Rigidbody2D>();
+    }
+
+    protected override void Start()
+    {
+
     }
 
     protected override void FixedUpdate()
@@ -60,8 +68,23 @@ public class Movement : MovementBehaviour
 
     private void Move()
     {
-        Vector2 direction = playerCharacter.GetInputMovement();
-        rigidbody.velocity = new Vector3(direction.x * walkingSpeed, rigidbody.velocity.y, 0);
+        //Vector2 direction = playerCharacter.GetInputMovement();
+        rigidbody.velocity = new Vector3(horizontalDirection * walkingSpeed, rigidbody.velocity.y, 0);
+    }
+
+    public void OnRightButtonDown()
+    {
+        horizontalDirection = 1f;
+    }
+
+    public void OnLeftButtonDown()
+    {
+        horizontalDirection = -1f;
+    }
+
+    public void OnMoveButtonUp()
+    {
+        horizontalDirection = 0;
     }
 
     private void Jump()

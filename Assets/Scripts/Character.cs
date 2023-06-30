@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,6 +20,7 @@ public class Character : CharacterBehaviour
     private CharacterInput input;
     private Vector2 movement;
     private bool isJumping;
+    private Weapon weapon;
 
     #endregion
 
@@ -37,6 +39,8 @@ public class Character : CharacterBehaviour
         return true;
     }
 
+    public override WeaponBehaviour GetWeapon() => weapon;
+
 
     #endregion
 
@@ -47,6 +51,8 @@ public class Character : CharacterBehaviour
         input = new CharacterInput();
         input.Enable();
         input.Player.Jump.performed += OnJump;
+
+        weapon = GetComponentInChildren<Weapon>();
     }
 
     protected override void Update()

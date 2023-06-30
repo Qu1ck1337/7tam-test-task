@@ -30,6 +30,12 @@ public abstract class CharacterBehaviour : MonoBehaviour
     /// <returns>true if jump button was pressed</returns>
     public abstract bool IsJumping();
 
+    /// <summary>
+    /// Returns playes's weapon
+    /// </summary>
+    /// <returns></returns>
+    public abstract WeaponBehaviour GetWeapon();
+
     #endregion
 
     #region UNITY METHODS
