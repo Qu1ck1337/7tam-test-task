@@ -22,6 +22,7 @@ public class Weapon : WeaponBehaviour
     protected override void Update()
     {
         timeDelta += Time.deltaTime;
+        Fire();
     }
 
     #endregion
@@ -33,13 +34,15 @@ public class Weapon : WeaponBehaviour
         if (timeDelta >= timeForShoot)
         {
             timeDelta = 0;
-            var projectile = Instantiate(projectilePrefab, transform);
+            Projectile projectile = ProjectilesPool.Self.GetProjectile();
             var scale = projectile.transform.localScale;
             projectile.transform.rotation = transform.rotation;
             projectile.transform.position = transform.position;
-            projectile.transform.localPosition = new Vector3(projectile.transform.localPosition.x, projectile.transform.localPosition.y + 0.3f, projectile.transform.localPosition.z);
+            projectile.transform.localPosition = new Vector3(projectile.transform.localPosition.x, projectile.transform.localPosition.y, projectile.transform.localPosition.z);
             projectile.transform.SetParent(null);
             projectile.transform.localScale = scale;
+            projectile.SetProjectileParent(this.gameObject);
+            projectile.gameObject.SetActive(true);
         }
     }
 

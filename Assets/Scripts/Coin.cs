@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Collider2D))]
 public class Coin : MonoBehaviour
 {
     #region SERIALIZED FIELDS
@@ -13,7 +14,16 @@ public class Coin : MonoBehaviour
 
     #region GETTERS
 
-    public int GetCoinValue() => value; 
+    public int GetCoinValue() => value;
+
+    #endregion
+
+    #region UNITY METHODS
+
+    private void Awake()
+    {
+        gameObject.tag = "Coin";
+    }
 
     #endregion
 }

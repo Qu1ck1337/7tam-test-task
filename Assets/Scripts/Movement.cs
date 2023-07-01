@@ -9,6 +9,7 @@ public class Movement : MovementBehaviour
 
     [SerializeField] private float walkingSpeed = 10f;
     [SerializeField] private float jumpForce = 100f;
+    [SerializeField] private Joystick joystick;
 
     #endregion
 
@@ -16,9 +17,6 @@ public class Movement : MovementBehaviour
 
     private CharacterBehaviour playerCharacter;
     private Rigidbody2D rigidbody;
-    private bool grounded;
-    private List<MovementButton> movementButtons = new List<MovementButton>();
-    private float horizontalDirection = 0;
 
     #endregion
 
@@ -43,54 +41,19 @@ public class Movement : MovementBehaviour
 
     protected override void FixedUpdate()
     {
-        Move();
-        Jump();
-    }
-
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Ground")
-        {
-            grounded = true;
-        } 
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Ground")
-        {
-            grounded = false;
-        }
+        MoveAndRotate();
     }
     #endregion
 
     #region METHODS
 
-    private void Move()
+    private void MoveAndRotate()
     {
         //Vector2 direction = playerCharacter.GetInputMovement();
-        rigidbody.velocity = new Vector3(horizontalDirection * walkingSpeed, rigidbody.velocity.y, 0);
-    }
-
-    public void OnRightButtonDown()
-    {
-        horizontalDirection = 1f;
-    }
-
-    public void OnLeftButtonDown()
-    {
-        horizontalDirection = -1f;
-    }
-
-    public void OnMoveButtonUp()
-    {
-        horizontalDirection = 0;
-    }
-
-    private void Jump()
-    {
-        if (!playerCharacter.IsJumping() || !grounded) return;
-        rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        rigidbody.velocity = new Vector3(joystick.Direction.x, joystick.Direction.y, 0) * walkingSpeed;
+        var direction = new Vector3(transform.position.x + joystick.Direction.x, transform.position.y + joystick.Direction.y, 0);
+        if (joystick.Direction.magnitude == 0) return;
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, Mathf.Atan2(direction.y - transform.position.y, direction.x - transform.position.x) * Mathf.Rad2Deg - 90);
     }
 
     #endregion

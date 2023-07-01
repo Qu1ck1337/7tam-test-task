@@ -11,6 +11,7 @@ public class Character : CharacterBehaviour
 
     [Header("Player Stats")]
     [SerializeField] private int health = 5;
+    [SerializeField] private int maxHealth = 10;
     [SerializeField] private int coins = 0;
 
     #endregion
@@ -27,6 +28,8 @@ public class Character : CharacterBehaviour
     #region GETTERS
 
     public override int GetHealth() => health;
+
+    public override int GetMaxHealth() => maxHealth;
 
     public override int GetCoins() => coins;
 

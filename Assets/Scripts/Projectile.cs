@@ -11,6 +11,12 @@ public class Projectile : MonoBehaviour
 
     #endregion
 
+    #region FIELDS
+
+    private GameObject parent;
+
+    #endregion
+
     #region UNITY METHODS
 
     private void Update()
@@ -21,9 +27,18 @@ public class Projectile : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         CharacterBehaviour obj = collision.gameObject.GetComponent<CharacterBehaviour>();
-        if (obj == null) return;
+        if (obj == null || obj.gameObject == parent) return;
         obj.Damage(damage);
         Destroy(this.gameObject);
+    }
+
+    #endregion
+
+    #region METHODS
+
+    public void SetProjectileParent(GameObject gameObject)
+    {
+        parent = gameObject;
     }
 
     #endregion

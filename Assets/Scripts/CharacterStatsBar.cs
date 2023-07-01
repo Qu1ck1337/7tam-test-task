@@ -8,7 +8,7 @@ public class CharacterStatsBar : MonoBehaviour
     #region FIELDS
 
     private Character playerCharacter;
-    private TextMeshPro coinCounter;
+    private TextMeshProUGUI coinCounter;
 
     #endregion
 
@@ -17,7 +17,7 @@ public class CharacterStatsBar : MonoBehaviour
     private void Start()
     {
         playerCharacter = GetComponentInParent<Character>();
-        coinCounter = GetComponentInChildren<TextMeshPro>();
+        coinCounter = GetComponentInChildren<TextMeshProUGUI>();
     }
 
     private void Update()

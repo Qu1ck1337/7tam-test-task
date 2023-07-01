@@ -14,6 +14,12 @@ public abstract class CharacterBehaviour : MonoBehaviour
     public abstract int GetHealth();
 
     /// <summary>
+    /// Player's max health
+    /// </summary>
+    /// <returns></returns>
+    public abstract int GetMaxHealth();
+
+    /// <summary>
     /// Coins
     /// </summary>
     /// <returns>player's coins</returns>
