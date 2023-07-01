@@ -61,4 +61,10 @@ public abstract class CharacterBehaviour : MonoBehaviour
     protected virtual void LateUpdate() { }
 
     #endregion
+
+    #region METHODS
+
+    public abstract void Damage(int damage);
+
+    #endregion
 }

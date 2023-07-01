@@ -74,6 +74,12 @@ public class Character : CharacterBehaviour
 
     #region METHODS
 
+    public override void Damage(int damage)
+    {
+        health -= damage;
+        if (health < 0) Destroy(this.gameObject);
+    }
+
     private void OnJump(InputAction.CallbackContext context)
     {
         isJumping = true;
