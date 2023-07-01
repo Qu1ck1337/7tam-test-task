@@ -335,7 +335,7 @@ GameObject:
   - component: {fileID: 4412761540441718997}
   - component: {fileID: 8443694680230653578}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Player 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -513,6 +513,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   localScripts:
   - {fileID: 4691748116805895408}
+  - {fileID: 4691748116805895409}
   localObjects: []
 --- !u!114 &4412761540441718997
 MonoBehaviour:

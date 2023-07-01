@@ -1,14 +1,13 @@
 using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PUN2_RoomController : MonoBehaviourPunCallbacks
 {
-    //Player instance prefab, must be located in the Resources folder
-    public GameObject playerPrefab;
     //Player spawn point
-    public Transform spawnPoint;
+    [SerializeField] private List<Transform> spawnPoints = new List<Transform>();
 
     // Use this for initialization
     void Start()
@@ -21,8 +20,12 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
             return;
         }
 
+        int playersCount = PhotonNetwork.PlayerList.ToList().Count();
+
+        Debug.Log(PhotonNetwork.CurrentRoom.CustomProperties);
+
         //We're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
-        PhotonNetwork.Instantiate(playerPrefab.name, spawnPoint.position, Quaternion.identity, 0);
+        PhotonNetwork.Instantiate("Player " + playersCount.ToString(), spawnPoints[playersCount - 1].position, spawnPoints[playersCount - 1].rotation, 0);
     }
 
 

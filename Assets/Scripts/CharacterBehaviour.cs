@@ -72,5 +72,7 @@ public abstract class CharacterBehaviour : MonoBehaviour
 
     public abstract void Damage(int damage);
 
+    public abstract void SetHealth(int setHealth);
+
     #endregion
 }

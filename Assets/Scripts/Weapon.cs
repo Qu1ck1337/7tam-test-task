@@ -31,7 +31,7 @@ public class Weapon : WeaponBehaviour
 
     public override void Fire()
     {
-        if (timeDelta >= timeForShoot)
+        if (timeDelta >= timeForShoot && GameManager.Self.GetIsGameStarted())
         {
             timeDelta = 0;
             Projectile projectile = ProjectilesPool.Self.GetProjectile();

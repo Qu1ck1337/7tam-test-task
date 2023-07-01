@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
-public class MovementBehaviour : MonoBehaviour
+public abstract class MovementBehaviour : MonoBehaviour
 {
     #region UNITY METHODS
 
@@ -31,6 +31,14 @@ public class MovementBehaviour : MonoBehaviour
     /// Late Update.
     /// </summary>
     protected virtual void LateUpdate() { }
+
+    #endregion
+
+    #region METHODS
+
+    public abstract void DisableJoystick();
+
+    public abstract void EnableJoystick();
 
     #endregion
 }

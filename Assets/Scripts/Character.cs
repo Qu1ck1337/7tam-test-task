@@ -88,5 +88,10 @@ public class Character : CharacterBehaviour
         isJumping = true;
     }
 
+    public override void SetHealth(int setHealth)
+    {
+        health = setHealth;
+    }
+
     #endregion
 }
