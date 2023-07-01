@@ -9,7 +9,6 @@ public class Movement : MovementBehaviour
 
     [SerializeField] private float walkingSpeed = 10f;
     [SerializeField] private float jumpForce = 100f;
-    [SerializeField] private Joystick joystick;
 
     #endregion
 
@@ -17,6 +16,7 @@ public class Movement : MovementBehaviour
 
     private CharacterBehaviour playerCharacter;
     private Rigidbody2D rigidbody;
+    private Joystick joystick;
 
     #endregion
 
@@ -32,6 +32,7 @@ public class Movement : MovementBehaviour
     {
         playerCharacter = GetComponent<CharacterBehaviour>();
         rigidbody = GetComponent<Rigidbody2D>();
+        joystick = FindObjectOfType<Joystick>();
     }
 
     protected override void Start()
