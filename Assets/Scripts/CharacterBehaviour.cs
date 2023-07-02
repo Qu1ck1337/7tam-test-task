@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using Photon.Pun;
 using UnityEngine;
+using static Structs;
 
-public abstract class CharacterBehaviour : MonoBehaviour
+public abstract class CharacterBehaviour : MonoBehaviourPun
 {
     #region GETTERS
 
@@ -42,6 +41,8 @@ public abstract class CharacterBehaviour : MonoBehaviour
     /// <returns></returns>
     public abstract WeaponBehaviour GetWeapon();
 
+    public abstract CharacterData GetCharacterData();
+
     #endregion
 
     #region UNITY METHODS
@@ -72,7 +73,11 @@ public abstract class CharacterBehaviour : MonoBehaviour
 
     public abstract void Damage(int damage);
 
-    public abstract void SetHealth(int setHealth);
+    public abstract void SetData(CharacterData characterData);
+
+    public abstract void SetHealth(int health);
+
+    public abstract void SetCoins(int coins);
 
     #endregion
 }

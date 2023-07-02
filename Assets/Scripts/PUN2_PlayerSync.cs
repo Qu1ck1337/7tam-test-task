@@ -1,5 +1,6 @@
 using UnityEngine;
 using Photon.Pun;
+using static Structs;
 
 public class PUN2_PlayerSync : MonoBehaviourPun, IPunObservable
 {
@@ -10,7 +11,9 @@ public class PUN2_PlayerSync : MonoBehaviourPun, IPunObservable
     //Values that will be synced over network
     Vector3 latestPos;
     Quaternion latestRot;
+    private CharacterBehaviour character;
     int latestHealth;
+    public int latestCoins;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +34,8 @@ public class PUN2_PlayerSync : MonoBehaviourPun, IPunObservable
                 localObjects[i].SetActive(false);
             }
         }
+        character = GetComponent<CharacterBehaviour>();
+        GameManager.Self.OnPlayerPrefabCreated();
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -40,9 +45,9 @@ public class PUN2_PlayerSync : MonoBehaviourPun, IPunObservable
             //We own this player: send the others our data
             stream.SendNext(transform.position);
             stream.SendNext(transform.rotation);
-
             //todo make getting data by structs
-            stream.SendNext(GetComponent<CharacterBehaviour>().GetHealth());
+            stream.SendNext(character.GetHealth());
+            stream.SendNext(character.GetCoins());
         }
         else
         {
@@ -50,6 +55,7 @@ public class PUN2_PlayerSync : MonoBehaviourPun, IPunObservable
             latestPos = (Vector3)stream.ReceiveNext();
             latestRot = (Quaternion)stream.ReceiveNext();
             latestHealth = (int)stream.ReceiveNext();
+            latestCoins = (int)stream.ReceiveNext();
         }
     }
 
@@ -62,7 +68,8 @@ public class PUN2_PlayerSync : MonoBehaviourPun, IPunObservable
             //Update remote player (smooth this, this looks good, at the cost of some accuracy)
             transform.position = Vector3.Lerp(transform.position, latestPos, Time.deltaTime * 5);
             transform.rotation = Quaternion.Lerp(transform.rotation, latestRot, Time.deltaTime * 5);
-            GetComponent<CharacterBehaviour>().SetHealth(latestHealth);
+            character.SetHealth(latestHealth);
+            character.SetCoins(latestCoins);
         }
     }
 }

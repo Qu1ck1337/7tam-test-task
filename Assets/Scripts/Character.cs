@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -32,6 +33,16 @@ public class Character : CharacterBehaviour
     public override int GetMaxHealth() => maxHealth;
 
     public override int GetCoins() => coins;
+
+    public override Structs.CharacterData GetCharacterData()
+    {
+        Structs.CharacterData data = new Structs.CharacterData()
+        {
+            health = health,
+            coins = coins,
+        };
+        return data;
+    }
 
     public override Vector2 GetInputMovement() => movement;
 
@@ -80,7 +91,11 @@ public class Character : CharacterBehaviour
     public override void Damage(int damage)
     {
         health -= damage;
-        if (health < 0) Destroy(this.gameObject);
+        if (health < 0)
+        {
+            gameObject.SetActive(false);
+            
+        }
     }
 
     private void OnJump(InputAction.CallbackContext context)
@@ -88,10 +103,26 @@ public class Character : CharacterBehaviour
         isJumping = true;
     }
 
-    public override void SetHealth(int setHealth)
+    public override void SetData(Structs.CharacterData characterData)
     {
-        health = setHealth;
+        throw new NotImplementedException();
     }
+
+    public override void SetHealth(int healthToSet)
+    {
+        health = healthToSet;
+    }
+
+    public override void SetCoins(int coinsToSet)
+    {
+        coins = coinsToSet;
+    }
+
+    //public override void SetData(Structs.CharacterData characterData)
+    //{
+    //    health = characterData.health;
+    //    coins = characterData.coins;
+    //}
 
     #endregion
 }
