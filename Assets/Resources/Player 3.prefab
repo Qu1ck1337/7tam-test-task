@@ -334,6 +334,7 @@ GameObject:
   - component: {fileID: -631399565963575601}
   - component: {fileID: 4412761540441718997}
   - component: {fileID: 8443694680230653578}
+  - component: {fileID: -3550694633696862171}
   m_Layer: 0
   m_Name: Player 3
   m_TagString: Untagged
@@ -512,8 +513,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   localScripts:
   - {fileID: 4691748116805895408}
+  - {fileID: -3550694633696862171}
   localObjects: []
-  latestCoins: 0
 --- !u!114 &4412761540441718997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -554,6 +555,20 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &-3550694633696862171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4691748116805895411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee5061ab8e40ec149890ca1b7f268566, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hintPrefab: {fileID: 6035880203590914231, guid: a1112108b221f2a49ba80dee9b905657, type: 3}
+  timeToDeleteHint: 10
 --- !u!1 &4691748116810379841
 GameObject:
   m_ObjectHideFlags: 0

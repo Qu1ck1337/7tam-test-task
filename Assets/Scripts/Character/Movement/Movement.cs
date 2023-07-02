@@ -16,12 +16,6 @@ public class Movement : MovementBehaviour
 
     #endregion
 
-    #region GETTERS
-
-
-
-    #endregion
-
     #region UNITY METHODS
 
     protected override void Awake()
@@ -29,11 +23,6 @@ public class Movement : MovementBehaviour
         playerCharacter = GetComponent<CharacterBehaviour>();
         rigidBody = GetComponent<Rigidbody2D>();
         joystick = FindObjectOfType<Joystick>();
-    }
-
-    protected override void Start()
-    {
-
     }
 
     protected override void Update()
@@ -52,7 +41,6 @@ public class Movement : MovementBehaviour
 
     private void MoveAndRotate()
     {
-        //Vector2 direction = playerCharacter.GetInputMovement();
         rigidBody.velocity = new Vector3(joystick.Direction.x, joystick.Direction.y, 0) * walkingSpeed;
         var direction = new Vector3(transform.position.x + joystick.Direction.x, transform.position.y + joystick.Direction.y, 0);
         if (joystick.Direction.magnitude == 0) return;

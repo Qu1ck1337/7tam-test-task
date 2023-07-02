@@ -4,28 +4,12 @@ public abstract class CharacterBehaviour : MonoBehaviourPun
 {
     #region GETTERS
 
-    /// <summary>
-    /// Health
-    /// </summary>
-    /// <returns>player's health</returns>
     public abstract int GetHealth();
 
-    /// <summary>
-    /// Player's max health
-    /// </summary>
-    /// <returns></returns>
     public abstract int GetMaxHealth();
 
-    /// <summary>
-    /// Coins
-    /// </summary>
-    /// <returns>player's coins</returns>
     public abstract int GetCoins();
 
-    /// <summary>
-    /// Returns playes's weapon
-    /// </summary>
-    /// <returns></returns>
     public abstract WeaponBehaviour GetWeapon();
 
     #endregion
