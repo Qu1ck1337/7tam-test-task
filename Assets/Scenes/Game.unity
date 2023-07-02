@@ -663,8 +663,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Exit
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b4384636712b4784492c38b617760d9d, type: 2}
+  m_sharedMaterial: {fileID: 8437020944534820134, guid: b4384636712b4784492c38b617760d9d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -688,8 +688,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 35.52
+  m_fontSizeBase: 35.52
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1333,8 +1333,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1816070497}
-  - {fileID: 1749628048}
   - {fileID: 1892069813}
+  - {fileID: 1749628048}
   m_Father: {fileID: 160585228}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2242,7 +2242,7 @@ GameObject:
   - component: {fileID: 1749628049}
   - component: {fileID: 1749628052}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Exit Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2262,7 +2262,7 @@ RectTransform:
   m_Children:
   - {fileID: 526059738}
   m_Father: {fileID: 1576868864}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -2411,7 +2411,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1576868864}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -3119,8 +3119,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1443500446481425204, guid: a5fa7d860a40eb348b4d1676682b00af, type: 3}
       propertyPath: m_fontSize
-      value: 44.75
+      value: 44.35
       objectReference: {fileID: 0}
+    - target: {fileID: 1443500446481425204, guid: a5fa7d860a40eb348b4d1676682b00af, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: b4384636712b4784492c38b617760d9d, type: 2}
+    - target: {fileID: 1443500446481425204, guid: a5fa7d860a40eb348b4d1676682b00af, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 8437020944534820134, guid: b4384636712b4784492c38b617760d9d, type: 2}
     - target: {fileID: 1443500446481425206, guid: a5fa7d860a40eb348b4d1676682b00af, type: 3}
       propertyPath: m_Name
       value: Player name
@@ -3149,6 +3157,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -25
       objectReference: {fileID: 0}
+    - target: {fileID: 1443500447296163580, guid: a5fa7d860a40eb348b4d1676682b00af, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 4121880872312635667, guid: ffc9f271fad56c243a45f100b9dc6778, type: 3}
     - target: {fileID: 1443500447296163583, guid: a5fa7d860a40eb348b4d1676682b00af, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -3158,9 +3170,37 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1443500447296163583, guid: a5fa7d860a40eb348b4d1676682b00af, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 1443500447296163583, guid: a5fa7d860a40eb348b4d1676682b00af, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 1443500447296163583, guid: a5fa7d860a40eb348b4d1676682b00af, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 1443500447296163583, guid: a5fa7d860a40eb348b4d1676682b00af, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 67.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1443500447296163583, guid: a5fa7d860a40eb348b4d1676682b00af, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -24.582
       objectReference: {fileID: 0}
+    - target: {fileID: 1443500447296163583, guid: a5fa7d860a40eb348b4d1676682b00af, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1443500448188314192, guid: a5fa7d860a40eb348b4d1676682b00af, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: b4384636712b4784492c38b617760d9d, type: 2}
+    - target: {fileID: 1443500448188314192, guid: a5fa7d860a40eb348b4d1676682b00af, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 8437020944534820134, guid: b4384636712b4784492c38b617760d9d, type: 2}
     - target: {fileID: 1443500448188314194, guid: a5fa7d860a40eb348b4d1676682b00af, type: 3}
       propertyPath: m_Name
       value: Coin counter
@@ -3175,7 +3215,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1443500448188314195, guid: a5fa7d860a40eb348b4d1676682b00af, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 150
+      value: 212.95
       objectReference: {fileID: 0}
     - target: {fileID: 1443500448188314195, guid: a5fa7d860a40eb348b4d1676682b00af, type: 3}
       propertyPath: m_AnchoredPosition.y

@@ -1,7 +1,9 @@
 using Photon.Pun;
 using Photon.Realtime;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PUN2_GameLobby : MonoBehaviourPunCallbacks
 {
@@ -10,6 +12,7 @@ public class PUN2_GameLobby : MonoBehaviourPunCallbacks
     [SerializeField] private TextMeshProUGUI createRoomInput;
     [SerializeField] private TextMeshProUGUI joinRoomInput;
     [SerializeField] private TextMeshProUGUI nickNameInput;
+    [SerializeField] private List<Button> lobbyButtons = new List<Button>();
 
     #endregion
 
@@ -66,6 +69,10 @@ public class PUN2_GameLobby : MonoBehaviourPunCallbacks
         Debug.Log("OnConnectedToMaster");
         //After we connected to Master server, join the Lobby
         PhotonNetwork.JoinLobby(TypedLobby.Default);
+        foreach (Button button in lobbyButtons)
+        {
+            button.interactable = true;
+        }
     }
 
     public override void OnCreateRoomFailed(short returnCode, string message)

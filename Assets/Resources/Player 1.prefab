@@ -513,7 +513,6 @@ MonoBehaviour:
   localScripts:
   - {fileID: 4691748116805895408}
   localObjects: []
-  latestCoins: 0
 --- !u!114 &4412761540441718997
 MonoBehaviour:
   m_ObjectHideFlags: 0
