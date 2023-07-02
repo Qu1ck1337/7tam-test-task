@@ -1,10 +1,11 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using TMPro;
 using UnityEngine;
 
-public class PlayersList : MonoBehaviour
+public class PlayersList : MonoBehaviourPunCallbacks
 {
     [SerializeField] private PlayerLine playerLinePrefab;
     [SerializeField] private RectTransform firstLine;
@@ -32,12 +33,18 @@ public class PlayersList : MonoBehaviour
 
             if (player.photonView.IsMine)
             {
-                line.SetPlayerData(player.name, player.GetComponent<CharacterBehaviour>().GetCoins());
+                line.SetPlayerData(player.photonView.Owner.NickName, player.GetComponent<CharacterBehaviour>().GetCoins());
             }
             else
             {
-                line.SetPlayerData(player.name, player.latestCoins);
+                line.SetPlayerData(player.photonView.Owner.NickName, player.latestCoins);
             }
         }
+    }
+
+    public void ExitFromRoom()
+    {
+        PhotonNetwork.LeaveRoom();
+        PhotonNetwork.LoadLevel("Lobby");
     }
 }

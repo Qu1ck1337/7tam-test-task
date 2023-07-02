@@ -8,14 +8,13 @@ public class Movement : MovementBehaviour
     #region SERIALIZED FIELDS
 
     [SerializeField] private float walkingSpeed = 10f;
-    [SerializeField] private float jumpForce = 100f;
 
     #endregion
 
     #region FIELDS
 
     private CharacterBehaviour playerCharacter;
-    private Rigidbody2D rigidbody;
+    private Rigidbody2D rigidBody;
     private Joystick joystick;
 
     #endregion
@@ -31,7 +30,7 @@ public class Movement : MovementBehaviour
     protected override void Awake()
     {
         playerCharacter = GetComponent<CharacterBehaviour>();
-        rigidbody = GetComponent<Rigidbody2D>();
+        rigidBody = GetComponent<Rigidbody2D>();
         joystick = FindObjectOfType<Joystick>();
     }
 
@@ -57,7 +56,7 @@ public class Movement : MovementBehaviour
     private void MoveAndRotate()
     {
         //Vector2 direction = playerCharacter.GetInputMovement();
-        rigidbody.velocity = new Vector3(joystick.Direction.x, joystick.Direction.y, 0) * walkingSpeed;
+        rigidBody.velocity = new Vector3(joystick.Direction.x, joystick.Direction.y, 0) * walkingSpeed;
         var direction = new Vector3(transform.position.x + joystick.Direction.x, transform.position.y + joystick.Direction.y, 0);
         if (joystick.Direction.magnitude == 0) return;
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, Mathf.Atan2(direction.y - transform.position.y, direction.x - transform.position.x) * Mathf.Rad2Deg - 90);

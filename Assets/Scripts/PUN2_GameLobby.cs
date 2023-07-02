@@ -18,21 +18,14 @@ public class PUN2_GameLobby : MonoBehaviourPunCallbacks
     //The list of created rooms
     List<RoomInfo> createdRooms = new List<RoomInfo>();
     Vector2 roomListScroll = Vector2.zero;
-    bool joiningRoom = false;
 
     // Use this for initialization
     void Start()
     {
-    #if UNITY_EDITOR
-        playerName = "Player 1";
-        Debug.Log("Player 1");
-#else
-        playerName = "Player 2";
-        Debug.Log("Player 2");
-#endif
+        playerName = "undefined";
         //This makes sure we can use PhotonNetwork.LoadLevel() on the master client and all clients in the same room sync their level automatically
         PhotonNetwork.AutomaticallySyncScene = true;
-
+        
         if (!PhotonNetwork.IsConnected)
         {
             //Set the App version before connecting
@@ -81,19 +74,16 @@ public class PUN2_GameLobby : MonoBehaviourPunCallbacks
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
         Debug.Log("OnCreateRoomFailed got called. This can happen if the room exists (even if not visible). Try another room name.");
-        joiningRoom = false;
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message)
     {
         Debug.Log("OnJoinRoomFailed got called. This can happen if the room is not existing or full or closed.");
-        joiningRoom = false;
     }
 
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
         Debug.Log("OnJoinRandomFailed got called. This can happen if the room is not existing or full or closed.");
-        joiningRoom = false;
     }
 
     public override void OnCreatedRoom()
