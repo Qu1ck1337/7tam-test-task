@@ -2,8 +2,14 @@ using UnityEngine;
 
 public class CameraConstantWidth : MonoBehaviour
 {
-    public Vector2 DefaultResolution = new Vector2(720, 1280);
-    [Range(0f, 1f)] public float WidthOrHeight = 0;
+    #region SERIALIZED FIELDS
+
+    [SerializeField] private Vector2 DefaultResolution = new Vector2(720, 1280);
+    [Range(0f, 1f), SerializeField] private float WidthOrHeight = 0;
+
+    #endregion
+
+    #region FIELDS
 
     private Camera componentCamera;
 
@@ -13,6 +19,9 @@ public class CameraConstantWidth : MonoBehaviour
     private float initialFov;
     private float horizontalFov = 120f;
 
+    #endregion
+
+    #region UNITY METHODS
     private void Start()
     {
         componentCamera = GetComponent<Camera>();
@@ -37,7 +46,9 @@ public class CameraConstantWidth : MonoBehaviour
             componentCamera.fieldOfView = Mathf.Lerp(constantWidthFov, initialFov, WidthOrHeight);
         }
     }
+    #endregion
 
+    #region METHODS
     private float CalcVerticalFov(float hFovInDeg, float aspectRatio)
     {
         float hFovInRads = hFovInDeg * Mathf.Deg2Rad;
@@ -46,4 +57,5 @@ public class CameraConstantWidth : MonoBehaviour
 
         return vFovInRads * Mathf.Rad2Deg;
     }
+    #endregion
 }
