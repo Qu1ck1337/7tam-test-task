@@ -1,28 +1,38 @@
 using UnityEngine;
 using Photon.Pun;
-using static Structs;
 
 public class PUN2_PlayerSync : MonoBehaviourPun, IPunObservable
 {
-    //List of the scripts that should only be active for the local player (ex. PlayerController, MouseLook etc.)
-    public MonoBehaviour[] localScripts;
-    //List of the GameObjects that should only be active for the local player (ex. Camera, AudioListener etc.)
-    public GameObject[] localObjects;
-    //Values that will be synced over network
-    Vector3 latestPos;
-    Quaternion latestRot;
-    private CharacterBehaviour character;
-    int latestHealth;
-    public int latestCoins;
+    #region SERIALIZED FIELDS
 
-    // Start is called before the first frame update
-    void Start()
+    //List of the scripts that should only be active for the local player (ex. PlayerController, MouseLook etc.)
+    [SerializeField] private MonoBehaviour[] localScripts;
+    //List of the GameObjects that should only be active for the local player (ex. Camera, AudioListener etc.)
+    [SerializeField] private GameObject[] localObjects;
+
+    #endregion
+
+    #region FIELDS
+
+    //Values that will be synced over network
+    private Vector3 latestPos;
+    private Quaternion latestRot;
+    private CharacterBehaviour character;
+    private int latestHealth;
+    private int latestCoins;
+
+    #endregion
+
+    #region GETTERS
+
+    public int GetLatestCoins() => latestCoins;
+
+    #endregion
+
+    #region UNITY METHODS
+    private void Start()
     {
-        if (photonView.IsMine)
-        {
-            //Player is local
-        }
-        else
+        if (!photonView.IsMine)
         {
             //Player is Remote, deactivate the scripts and object that should only be enabled for the local player
             for (int i = 0; i < localScripts.Length; i++)
@@ -37,6 +47,23 @@ public class PUN2_PlayerSync : MonoBehaviourPun, IPunObservable
         character = GetComponent<CharacterBehaviour>();
         GameManager.Self.OnPlayerPrefabCreated();
     }
+
+    void Update()
+    {
+        if (!photonView.IsMine)
+        {
+
+            //Update remote player (smooth this, this looks good, at the cost of some accuracy)
+            transform.position = Vector3.Lerp(transform.position, latestPos, Time.deltaTime * 5);
+            transform.rotation = Quaternion.Lerp(transform.rotation, latestRot, Time.deltaTime * 5);
+            character.SetHealth(latestHealth);
+            character.SetCoins(latestCoins);
+        }
+    }
+
+    #endregion
+
+    #region PUN METHODS
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
@@ -59,17 +86,5 @@ public class PUN2_PlayerSync : MonoBehaviourPun, IPunObservable
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (!photonView.IsMine)
-        {
-
-            //Update remote player (smooth this, this looks good, at the cost of some accuracy)
-            transform.position = Vector3.Lerp(transform.position, latestPos, Time.deltaTime * 5);
-            transform.rotation = Quaternion.Lerp(transform.rotation, latestRot, Time.deltaTime * 5);
-            character.SetHealth(latestHealth);
-            character.SetCoins(latestCoins);
-        }
-    }
+    #endregion
 }

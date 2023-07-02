@@ -1,8 +1,4 @@
-using Photon.Pun;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,9 +15,6 @@ public class Character : CharacterBehaviour
 
     #region FIELDS
 
-    private CharacterInput input;
-    private Vector2 movement;
-    private bool isJumping;
     private Weapon weapon;
 
     #endregion
@@ -34,25 +27,6 @@ public class Character : CharacterBehaviour
 
     public override int GetCoins() => coins;
 
-    public override Structs.CharacterData GetCharacterData()
-    {
-        Structs.CharacterData data = new Structs.CharacterData()
-        {
-            health = health,
-            coins = coins,
-        };
-        return data;
-    }
-
-    public override Vector2 GetInputMovement() => movement;
-
-    public override bool IsJumping()
-    {
-        if (isJumping == false) return false;
-        isJumping = false;
-        return true;
-    }
-
     public override WeaponBehaviour GetWeapon() => weapon;
 
 
@@ -62,16 +36,7 @@ public class Character : CharacterBehaviour
 
     protected override void Awake()
     {
-        input = new CharacterInput();
-        input.Enable();
-        input.Player.Jump.performed += OnJump;
-
         weapon = GetComponentInChildren<Weapon>();
-    }
-
-    protected override void Update()
-    {
-        movement = input.Player.Movement.ReadValue<Vector2>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -97,16 +62,6 @@ public class Character : CharacterBehaviour
         }
     }
 
-    private void OnJump(InputAction.CallbackContext context)
-    {
-        isJumping = true;
-    }
-
-    public override void SetData(Structs.CharacterData characterData)
-    {
-        throw new NotImplementedException();
-    }
-
     public override void SetHealth(int healthToSet)
     {
         health = healthToSet;
@@ -117,11 +72,6 @@ public class Character : CharacterBehaviour
         coins = coinsToSet;
     }
 
-    //public override void SetData(Structs.CharacterData characterData)
-    //{
-    //    health = characterData.health;
-    //    coins = characterData.coins;
-    //}
 
     #endregion
 }

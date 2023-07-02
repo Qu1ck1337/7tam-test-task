@@ -1,19 +1,33 @@
 using Photon.Pun;
 using Photon.Realtime;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
     public static GameManager Self;
+    #region FIELDS
 
     private List<PUN2_PlayerSync> playersList = new List<PUN2_PlayerSync>();
     private bool isGameStarted;
     private bool isGameFinished;
+    private PUN2_PlayerSync winner;
+
+    #endregion
+
+    #region GETTERS
 
     public bool GetIsGameStarted() => isGameStarted;
+
+    public bool GetIsGameFinished() => isGameFinished;
+
+    public PUN2_PlayerSync GetWinner() => winner;
+
+    public List<PUN2_PlayerSync> GetPlayersList() => playersList;
+
+    #endregion
+
+    #region UNITY METHODS
 
     private void Awake()
     {
@@ -33,11 +47,20 @@ public class GameManager : MonoBehaviourPunCallbacks
                 activePlayers += player.gameObject.activeSelf ? 1 : 0;
             }
             if (activePlayers <= 1) 
-            { 
-                EndGame();
+            {
+                isGameFinished = true;
+
+                foreach (PUN2_PlayerSync player in playersList)
+                {
+                    if (player.gameObject.activeSelf) winner = player;
+                }
             }
         }
     }
+
+    #endregion
+
+    #region PUN METHODS
 
     public void OnPlayerPrefabCreated()
     {
@@ -49,12 +72,5 @@ public class GameManager : MonoBehaviourPunCallbacks
         playersList = FindObjectsOfType<PUN2_PlayerSync>(true).ToList();
     }
 
-    private void EndGame()
-    {
-        isGameFinished = true;
-    }
-
-    public List<PUN2_PlayerSync> GetPlayersList() => playersList;
-
-    public bool GetIsGameFinished() => isGameFinished;
+    #endregion
 }

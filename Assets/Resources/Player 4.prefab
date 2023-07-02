@@ -484,7 +484,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkingSpeed: 5
-  jumpForce: 100
 --- !u!114 &4691748116805895370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -513,8 +512,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   localScripts:
   - {fileID: 4691748116805895408}
-  - {fileID: 4691748116805895409}
   localObjects: []
+  latestCoins: 0
 --- !u!114 &4412761540441718997
 MonoBehaviour:
   m_ObjectHideFlags: 0

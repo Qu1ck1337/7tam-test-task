@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Weapon : WeaponBehaviour
@@ -35,13 +33,20 @@ public class Weapon : WeaponBehaviour
         {
             timeDelta = 0;
             Projectile projectile = ProjectilesPool.Self.GetProjectile();
+
+            // we cache transform to not call it again (optimisation)
+            Transform projectileTransform = projectile.transform;
+
             var scale = projectile.transform.localScale;
-            projectile.transform.rotation = transform.rotation;
-            projectile.transform.position = transform.position;
-            projectile.transform.localPosition = new Vector3(projectile.transform.localPosition.x, projectile.transform.localPosition.y, projectile.transform.localPosition.z);
-            projectile.transform.SetParent(null);
-            projectile.transform.localScale = scale;
-            projectile.SetProjectileParent(this.gameObject);
+            projectileTransform.rotation = transform.rotation;
+            projectileTransform.position = transform.position;
+
+            projectileTransform.SetParent(null);
+
+            projectileTransform.localScale = scale;
+
+            projectile.SetProjectileParent(gameObject);
+
             projectile.gameObject.SetActive(true);
         }
     }

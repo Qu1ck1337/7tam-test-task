@@ -1,6 +1,4 @@
 using Photon.Pun;
-using UnityEngine;
-using static Structs;
 
 public abstract class CharacterBehaviour : MonoBehaviourPun
 {
@@ -25,23 +23,10 @@ public abstract class CharacterBehaviour : MonoBehaviourPun
     public abstract int GetCoins();
 
     /// <summary>
-    /// Player's movement input
-    /// </summary>
-    public abstract Vector2 GetInputMovement();
-
-    /// <summary>
-    /// Is Player jumping
-    /// </summary>
-    /// <returns>true if jump button was pressed</returns>
-    public abstract bool IsJumping();
-
-    /// <summary>
     /// Returns playes's weapon
     /// </summary>
     /// <returns></returns>
     public abstract WeaponBehaviour GetWeapon();
-
-    public abstract CharacterData GetCharacterData();
 
     #endregion
 
@@ -72,8 +57,6 @@ public abstract class CharacterBehaviour : MonoBehaviourPun
     #region METHODS
 
     public abstract void Damage(int damage);
-
-    public abstract void SetData(CharacterData characterData);
 
     public abstract void SetHealth(int health);
 

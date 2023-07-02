@@ -1,15 +1,19 @@
 using Photon.Pun;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class PUN2_RoomController : MonoBehaviourPunCallbacks
 {
-    //Player spawn point
+    #region SERIALIZED FIELDS
+
+    //Player spawn points
     [SerializeField] private List<Transform> spawnPoints = new List<Transform>();
 
-    // Use this for initialization
+    #endregion
+
+    #region UNITY METHODS
+
     void Start()
     {
         //In case we started this demo with the wrong scene being active, simply load the menu scene
@@ -26,13 +30,17 @@ public class PUN2_RoomController : MonoBehaviourPunCallbacks
 
         //We're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
         GameObject playerPrefab = PhotonNetwork.Instantiate("Player " + playersCount, spawnPoints[playersCount - 1].position, spawnPoints[playersCount - 1].rotation, 0);
-        PhotonNetwork.NickName = "Player " + playersCount;
     }
 
+    #endregion
+
+    #region PUN METHODS
 
     public override void OnLeftRoom()
     {
         //We have left the Room, return back to the GameLobby
         UnityEngine.SceneManagement.SceneManager.LoadScene("Lobby");
     }
+
+    #endregion
 }

@@ -512,7 +512,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   localScripts:
   - {fileID: 4691748116805895408}
-  - {fileID: 4691748116805895409}
   localObjects: []
   latestCoins: 0
 --- !u!114 &4412761540441718997

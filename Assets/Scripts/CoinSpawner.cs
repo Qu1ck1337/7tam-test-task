@@ -1,16 +1,23 @@
 using Photon.Pun;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class CoinSpawner : MonoBehaviourPunCallbacks
 {
+    #region SERIALIZED FIELDS
+
     [SerializeField] private string coinPrefabName;
     [SerializeField] private float TimeToSpawn;
 
+    #endregion
+
+    #region FIELDS
+
     private float timer;
     private GameObject currentCoin;
+
+    #endregion
+
+    #region UNITY METHODS
 
     private void Update()
     {
@@ -28,4 +35,6 @@ public class CoinSpawner : MonoBehaviourPunCallbacks
             }
         }
     }
+
+    #endregion
 }

@@ -27,9 +27,12 @@ public class Projectile : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         CharacterBehaviour obj = collision.gameObject.GetComponent<CharacterBehaviour>();
+
+        if (obj == null) gameObject.SetActive(false);
+
         if (obj == null || obj.gameObject == parent) return;
         obj.Damage(damage);
-        Destroy(this.gameObject);
+        gameObject.SetActive(false);
     }
 
     #endregion
